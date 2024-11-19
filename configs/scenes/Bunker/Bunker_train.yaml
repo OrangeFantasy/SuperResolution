@@ -1,0 +1,17 @@
+target: core.data.supersampling_sequence.SuperSamplingDataset_Sequence
+params:
+  anti_alias_root: ./dataset/Reference
+  alias_root:      ./dataset/Reference
+  buffer_root:     ./dataset/HR_GBuffers
+  velocity_root:   ./dataset/Velocity
+  
+  n_history_frames: 1
+  n_frames: 6
+  frame_range: [[0, 656], [776, 2056], [2176, 3200]]
+  sequence_length: 4
+
+  image_size: [1080, 1920]
+  crop_size: [480, 720]
+
+  phase: train
+  scene: Bunker

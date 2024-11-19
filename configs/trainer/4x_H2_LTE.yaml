@@ -1,0 +1,38 @@
+target: core.trainer.Trainer
+params: 
+  label: Sampler_LTE_1
+  sr_scale: 4
+
+  model_config: 
+    target: core.models.lte.SuperSampler
+    params: 
+      frame_channels: 3
+      buffer_channels: 10
+
+  optimizer_config: 
+    target: torch.optim.AdamW
+    params: 
+      lr: 0.0001
+      weight_decay: 0.0001
+      betas: [0.9, 0.999]
+
+  scheduler_config: 
+    target: torch.optim.lr_scheduler.StepLR
+    params: 
+      step_size: 10000
+      gamma: 0.98
+
+  loss_group_config: 
+    target: core.models.lte.LossGroup
+    params:
+      lambda_l1: 1.0
+      lambda_ssim: 0.5
+      lambda_perc: 0.05
+
+    # lpips: 
+    #   target: core.modules.loss.LPIPSLoss
+    #   params: 
+    #     net: vgg
+    #   factor: 0.05
+
+  device: cpu
